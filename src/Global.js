@@ -1,5 +1,4 @@
 //后台跳转URL
-//服务器地址: http://106.13.130.148/ch
 const  urlPath = 'http://127.0.0.1:8088'
 //浏览标签Title名称
 const  winTitle = 'Spring AnoSing'
