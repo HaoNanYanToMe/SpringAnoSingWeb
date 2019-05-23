@@ -10,9 +10,8 @@ const os = require('os');
 const fs = require('fs');
 const path = require('path');
 const package = require('../package.json');
-import Global from '/src/Global.js'
 
-
+const Global = require('../src/Global.js');
 fs.open('./build/env.js', 'w', function(err, fd) {
     const buf = 'export default "production";';
     fs.write(fd, buf, 0, buf.length, 0, function(err, written, buffer) {});
@@ -20,7 +19,7 @@ fs.open('./build/env.js', 'w', function(err, fd) {
 
 module.exports = merge(webpackBaseConfig, {
     output: {
-	publicPath: 'http://demo.cn/dist/',  // 修改 https://iv...admin 这部分为你的服务器域名
+		publicPath: Global.global.domainName+'/dist/',
         filename: '[name].[hash].js',
         chunkFilename: '[name].[hash].chunk.js'
     },
@@ -33,8 +32,6 @@ module.exports = merge(webpackBaseConfig, {
             allChunks: true
         }),
         new webpack.optimize.CommonsChunkPlugin({
-            // name: 'vendors',
-            // filename: 'vendors.[hash].js'
             name: ['vender-exten', 'vender-base'],
             minChunks: Infinity
         }),
@@ -43,20 +40,6 @@ module.exports = merge(webpackBaseConfig, {
                 NODE_ENV: '"production"'
             }
         }),
-//         new webpack.optimize.UglifyJsPlugin({
-//             compress: {
-//                 warnings: false
-//             }
-//         }),
-        // new UglifyJsParallelPlugin({
-        //     workers: os.cpus().length,
-        //     mangle: true,
-        //     compressor: {
-        //       warnings: false,
-        //       drop_console: true,
-        //       drop_debugger: true
-        //      }
-        // }),
         new CopyWebpackPlugin([
             {
                 from: 'bitbug_favicon.ico'
@@ -77,12 +60,11 @@ module.exports = merge(webpackBaseConfig, {
             ]
         }),
         new HtmlWebpackPlugin({
-            title: Global.winTitle,
-            favicon: './bitbug_favicon.ico',
-            filename: '../index.html',
             template: '!!ejs-loader!./src/template/index.ejs',
-            inject: false,
-			favicon: path.resolve('./bitbug_favicon.ico') // 增加
+			title: Global.global.winTitle,
+			favicon: path.resolve(Global.global.favicon),
+			filename: '../index.html',
+			inject: false,
         })
     ]
 });

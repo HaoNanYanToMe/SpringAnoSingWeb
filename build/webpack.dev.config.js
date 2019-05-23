@@ -6,9 +6,9 @@ const merge = require('webpack-merge');
 const webpackBaseConfig = require('./webpack.base.config.js');
 const fs = require('fs');
 const package = require('../package.json');
+const path = require('path');
 
-import Global from '/src/Global.js'
-
+const Global = require('../src/Global.js');
 fs.open('./build/env.js', 'w', function (err, fd) {
     const buf = 'export default "development";';
     fs.write(fd, buf, 0, 'utf-8', function(err, written, buffer) {});
@@ -17,7 +17,7 @@ fs.open('./build/env.js', 'w', function (err, fd) {
 module.exports = merge(webpackBaseConfig, {
     devtool: '#source-map',
     output: {
-        publicPath: '/dist/',
+        publicPath: Global.global.domainName+'/dist/',
         filename: '[name].js',
         chunkFilename: '[name].chunk.js'
     },
@@ -32,7 +32,8 @@ module.exports = merge(webpackBaseConfig, {
             minChunks: Infinity
         }),
         new HtmlWebpackPlugin({
-            title: Global.winTitle,
+						title: Global.global.winTitle,
+						favicon: path.resolve(Global.global.favicon),
             filename: '../index.html',
             inject: false,
         }),

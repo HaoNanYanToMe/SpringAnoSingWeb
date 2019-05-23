@@ -6,11 +6,9 @@ export const loginRouter = {
 	path: '/login',
 	name: 'login',
 	meta: {
-		title: Global.winTitle
+		title: Global.global.winTitle,
 	},
 	component: () =>
-		// import ('@//views/login.vue')
-		// import ('@//views/loginTest.vue')
 		import ('@//views/loginNormal.vue')
 };
 
@@ -75,7 +73,7 @@ export const otherRouter = {
 	redirect: '/home',
 	component: Main,
 	meta: {
-		title: '新东方北京学校·业务后台管理系统'
+		title:  Global.global.winTitle + '·业务后台管理系统'
 	},
 	children: [{
 		path: 'home',

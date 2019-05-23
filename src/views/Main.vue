@@ -99,8 +99,8 @@
 				shrink: false,
 				userName: '',
 				isFullScreen: false,
-				menuShow: Global.menuShow,
-				menuShowMin: Global.menuShowMin,
+				menuShow: Global.global.menuShow,
+				menuShowMin: Global.global.menuShowMin,
 				openedSubmenuArr: this.$store.state.app.openedSubmenuArr
 			};
 		},

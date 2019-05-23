@@ -34,7 +34,7 @@ function handleResults(currenPage, response) {
 }
 
 function handleUrl(url) {
-	url = Global.urlPath + url
+	url = Global.Global.global.urlPath + url
 	return url
 }
 
@@ -58,7 +58,7 @@ export default {
 	 */
 	loginAdmin(currenPage, userName, userPwd, type, response, exception) {
 		type = TYPE_ONLY == -1 ? type : TYPE_ONLY;
-		axios.post(Global.urlPath + '/login', qs.stringify({
+		axios.post(Global.global.urlPath + '/login', qs.stringify({
 			"userName": userName,
 			"userPwd": userPwd,
 		})).then(
@@ -80,7 +80,7 @@ export default {
 		// axios.post()
 
 		axios({
-				url: Global.urlPath + '/excelExport',
+				url: Global.global.urlPath + '/excelExport',
 				method: 'post',
 				data: qs.stringify({
 					"selTable": selTable,
@@ -114,7 +114,7 @@ export default {
 	selectBase(currenPage, selTable, tables, columns, sortColumns, sortTypes,
 		pageNo, pageSize, data, type, response, exception) {
 		type = TYPE_ONLY == -1 ? type : TYPE_ONLY;
-		axios.post(Global.urlPath + '/selectBase', qs.stringify({
+		axios.post(Global.global.urlPath + '/selectBase', qs.stringify({
 			"selTable": selTable,
 			"tables": tables,
 			"data": JSON.stringify(data),
@@ -143,7 +143,7 @@ export default {
 	eCharsBase(currenPage, selTable, eCharsType, columns, title, xDataCol, seriesDataCol, legendCol, seriesName,
 		sortColumns, sortTypes, data, type, response, exception) {
 		type = TYPE_ONLY == -1 ? type : TYPE_ONLY;
-		axios.post(Global.urlPath + '/eCharsBase', qs.stringify({
+		axios.post(Global.global.urlPath + '/eCharsBase', qs.stringify({
 			"selTable": selTable,
 			"eCharsType": eCharsType,
 			"columns": columns,
@@ -179,7 +179,7 @@ export default {
 	 */
 	exFunction(currenPage, selExTable, functionName, isBase, data, type, response, exception) {
 		type = TYPE_ONLY == -1 ? type : TYPE_ONLY;
-		axios.post(Global.urlPath + '/exFunction', qs.stringify({
+		axios.post(Global.global.urlPath + '/exFunction', qs.stringify({
 			"selExTable": selExTable,
 			"functionName": functionName,
 			"isBase": isBase,
@@ -208,7 +208,7 @@ export default {
 	 */
 	selectById(currenPage, selTable, tables, columns, selId, type, response, exception) {
 		type = TYPE_ONLY == -1 ? type : TYPE_ONLY;
-		axios.post(Global.urlPath + '/selectById', qs.stringify({
+		axios.post(Global.global.urlPath + '/selectById', qs.stringify({
 			"selTable": selTable,
 			"tables": tables,
 			"columns": columns,
@@ -237,7 +237,7 @@ export default {
 	 */
 	updateData(currenPage, updTableName, updData, version, updId, type, response, exception) {
 		type = TYPE_ONLY == -1 ? type : TYPE_ONLY;
-		axios.post(Global.urlPath + '/updateData', qs.stringify({
+		axios.post(Global.global.urlPath + '/updateData', qs.stringify({
 			"updTableName": updTableName,
 			"updData": JSON.stringify(updData),
 			"version": version,
@@ -265,7 +265,7 @@ export default {
 	 */
 	insertData(currenPage, insertTable, data, type, response, exception) {
 		type = TYPE_ONLY == -1 ? type : TYPE_ONLY;
-		axios.post(Global.urlPath + '/insertData', qs.stringify({
+		axios.post(Global.global.urlPath + '/insertData', qs.stringify({
 			"insertTable": insertTable,
 			"data": JSON.stringify(data),
 		})).then(
@@ -292,7 +292,7 @@ export default {
 	 */
 	deleteAffair(currenPage, delTable, delId, version, type, response, exception) {
 		type = TYPE_ONLY == -1 ? type : TYPE_ONLY;
-		axios.post(Global.urlPath + '/deleteAffair', qs.stringify({
+		axios.post(Global.global.urlPath + '/deleteAffair', qs.stringify({
 			"delTable": delTable,
 			"delId": delId,
 			"version": version
@@ -319,7 +319,7 @@ export default {
 	 */
 	deleteForce(currenPage, delTable, delId, type, response, exception) {
 		type = TYPE_ONLY == -1 ? type : TYPE_ONLY;
-		axios.post(Global.urlPath + '/deleteForce', qs.stringify({
+		axios.post(Global.global.urlPath + '/deleteForce', qs.stringify({
 			"delTable": delTable,
 			"delId": delId,
 		})).then(

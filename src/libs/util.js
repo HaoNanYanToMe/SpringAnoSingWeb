@@ -8,7 +8,7 @@ let util = {
 		
 };
 util.title = function (title) {
-		title = title || Global.winTitle;
+		title = title || Global.global.winTitle;
 		window.document.title = title;
 };
 
